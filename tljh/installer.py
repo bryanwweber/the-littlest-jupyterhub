@@ -225,9 +225,9 @@ def ensure_user_environment(user_requirements_txt_file):
             conda.install_miniconda(installer_path, USER_ENV_PREFIX)
 
     # nbresuse needs psutil, which requires gcc
-    apt.install_packages([
-        'gcc'
-    ])
+    # apt.install_packages([
+    #     'gcc'
+    # ])
 
     conda.ensure_conda_packages(USER_ENV_PREFIX, [
         # Conda's latest version is on conda much more so than on PyPI.
@@ -353,12 +353,12 @@ def run_plugin_actions(plugin_manager, plugins):
     """
     hook = plugin_manager.hook
     # Install apt packages
-    apt_packages = list(set(itertools.chain(*hook.tljh_extra_apt_packages())))
-    if apt_packages:
-        logger.info('Installing {} apt packages collected from plugins: {}'.format(
-            len(apt_packages), ' '.join(apt_packages)
-        ))
-        apt.install_packages(apt_packages)
+    # apt_packages = list(set(itertools.chain(*hook.tljh_extra_apt_packages())))
+    # if apt_packages:
+    #     logger.info('Installing {} apt packages collected from plugins: {}'.format(
+    #         len(apt_packages), ' '.join(apt_packages)
+    #     ))
+    #     apt.install_packages(apt_packages)
 
     # Install conda packages
     conda_packages = list(set(itertools.chain(*hook.tljh_extra_user_conda_packages())))
@@ -430,7 +430,7 @@ def main():
     ensure_user_environment(args.user_requirements_txt_url)
 
     logger.info("Setting up JupyterHub...")
-    ensure_node()
+    # ensure_node()
     ensure_jupyterhub_package(HUB_ENV_PREFIX)
     ensure_chp_package(HUB_ENV_PREFIX)
     ensure_jupyterlab_extensions()
