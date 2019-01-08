@@ -353,11 +353,11 @@ def run_plugin_actions(plugin_manager, plugins):
     """
     hook = plugin_manager.hook
     # Install apt packages
-    # apt_packages = list(set(itertools.chain(*hook.tljh_extra_apt_packages())))
-    # if apt_packages:
-    #     logger.info('Installing {} apt packages collected from plugins: {}'.format(
-    #         len(apt_packages), ' '.join(apt_packages)
-    #     ))
+    apt_packages = list(set(itertools.chain(*hook.tljh_extra_apt_packages())))
+    if apt_packages:
+        logger.info('Installing {} apt packages collected from plugins: {}'.format(
+            len(apt_packages), ' '.join(apt_packages)
+        ))
     #     apt.install_packages(apt_packages)
 
     # Install conda packages
